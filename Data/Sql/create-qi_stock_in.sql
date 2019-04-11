@@ -18,8 +18,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for `qi_stock_in`
 -- ----------------------------
-DROP TABLE IF EXISTS `qi_stock_in`;
-CREATE TABLE `qi_stock_in` (
+DROP TABLE IF EXISTS `xiaowei_stock_in`;
+CREATE TABLE `xiaowei_stock_in` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,

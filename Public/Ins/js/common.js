@@ -338,8 +338,10 @@ function set_val(name, val) {
 	if ($("#" + name + " option").length > 0) {
 		if (val == "") {
 			$("#" + name + " option:first").attr('selected', 'selected');
+            $("#" + name + " option:not(:first)").removeAttr('selected');
 		} else {
 			$("#" + name + " [value=" + val + "]").attr('selected', 'selected');
+            $("#" + name + " [value!=" + val + "]").removeAttr('selected');
 		}
 		return;
 	}
