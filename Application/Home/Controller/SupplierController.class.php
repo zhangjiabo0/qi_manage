@@ -13,7 +13,7 @@ namespace Home\Controller;
 
 class SupplierController extends HomeController {
 	//过滤查询字段
-	protected $config = array('app_type' => 'common', 'admin' => 'set_tag,tag_manage');
+	protected $config = array('app_type' => 'common', 'admin' => 'set_tag,tag_manage','read' => 'winpop2');
 
 	function _search_filter(&$map) {
 		$map['name'] = array('like', "%" . $_POST['name'] . "%");
@@ -216,6 +216,16 @@ class SupplierController extends HomeController {
 		$this -> assign('menu', popup_tree_menu($tree));
 		$this -> display();
 	}
+
+    public function winpop2() {
+        $node = M("Supplier");
+        $menu = array();
+        $menu = $node -> field('id,name') -> select();
+        $tree = list_to_tree($menu);
+        //dump($node);
+        $this -> assign('menu', popup_tree_menu($tree));
+        $this -> display();
+    }
 
 	protected function _insert($name = 'Supplier') {
 		$model = D('Supplier');

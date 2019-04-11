@@ -1,0 +1,101 @@
+<extend name="Layout/ins_page" />
+<block name="content">
+	{:W('PageHeader/simple',array('name'=>'新建入库单','search'=>'N'))}
+	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal">
+		<input type="hidden" id="ajax" name="ajax" value="0">
+		<input type="hidden" id="opmode" name="opmode" value="add">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="start_date">入库单备注：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input id="" type="text" class="form-control text-center" name="start_date"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>序号</th>
+						<th>原材料名称</th>
+						<th>批号</th>
+						<th>单位</th>
+						<th>数量</th>
+						<th>单价</th>
+						<th>供应商</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody id="tbody">
+						<tr id="1">
+							<td id="num">1</td>
+							<td><input name="name" /></td>
+							<td><input name="model" /></td>
+							<td><input name="unit" /></td>
+							<td><input name="amount" /></td>
+							<td><input name="unit_price" /></td>
+							<td>
+								<div class="input-group ">
+									<input class="form-control" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly" />
+									<input name="supplier_id" id="supplier_id" type="hidden" msg="请选择供应商" check="require" />
+									<div class="input-group-btn">
+										<a class="btn btn-sm btn-primary" onclick="select_supplier();" > <i class="fa fa-search" ></i> </a>
+									</div>
+								</div>
+							</td>
+							<td><i class="fa fa-save" title="保存"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">附件：</label>
+			<div class="col-sm-10">
+				{:W('FileUpload/add')}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="action col-sm-8 col-sm-offset-2">
+				<input class="btn btn-sm btn-primary" type="button" value="保存" onclick="save();">
+				<input class="btn btn-sm btn-default" type="button" value="取消" onclick="go_return_url();">
+			</div>
+		</div>
+	</form>
+</block>
+<block name="js">
+	<script>
+		function save() {
+			sendForm("form_data", "{:U('save')}");
+		}
+        function select_supplier() {
+            winopen("{:U('supplier/winpop2')}", 560, 470);
+        }
+		var num = 1;
+		function add(){
+            num++;
+			var html = $("#1").html();
+			$("#tbody").append("<tr id='"+num+"'>"+html+"</tr>");
+            $("#tbody #"+num+" #num").html(num);
+			// alert(html);
+		}
+
+		function del(obj){
+            var id = obj.parent().parent().attr('id');
+            obj.parent().parent().remove();
+            num--;
+            var temp_id;
+            $("#tbody tr").each(function(){
+                if($(this).attr('id')>id){
+                    temp_id = $(this).attr('id');
+                    $(this).attr('id',temp_id-1);
+                    $(this).children("td:first").html(temp_id-1);
+				}
+
+			})
+
+		}
+	</script>
+</block>
