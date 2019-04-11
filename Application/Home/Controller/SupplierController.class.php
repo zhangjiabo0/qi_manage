@@ -219,11 +219,13 @@ class SupplierController extends HomeController {
 
     public function winpop2() {
         $node = M("Supplier");
+        $id = $_GET['id'];
         $menu = array();
         $menu = $node -> field('id,name') -> select();
         $tree = list_to_tree($menu);
         //dump($node);
         $this -> assign('menu', popup_tree_menu($tree));
+        $this -> assign('id', $id);
         $this -> display();
     }
 

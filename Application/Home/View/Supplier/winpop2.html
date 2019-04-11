@@ -7,6 +7,7 @@
 			<h1>选择供应商</h1>
 		</div>
 		<div class="pull-right">
+			<input id="id" type="hidden" value="{$id}"/>
 			<a onclick="save();" class="btn btn-sm btn-primary">确定</a>
 			<a onclick="myclose();" class="btn btn-sm btn-default">关闭</a>
 		</div>
@@ -24,9 +25,10 @@
 <block name="js">
 	<script type="text/javascript">
 		function save() {
+		    var id = $("#id").val();
 			if ($("#name").val().length > 0) {
-				$("#supplier_name", parent.document).val($("#name").val());
-				$("#supplier_id", parent.document).val($("#val").val());
+				$("#"+id+" #supplier_name", parent.document).val($("#name").val());
+				$("#"+id+" #supplier_id", parent.document).val($("#val").val());
 			} else {
 				ui_error("请选择供应商");
 				return false;
