@@ -29,7 +29,7 @@ CREATE TABLE `qi_stock_in_material` (
   `amount` double NOT NULL,
   `unit_price` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qi_stock_in_material

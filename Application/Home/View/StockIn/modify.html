@@ -1,0 +1,158 @@
+<extend name="Layout/ins_page" />
+<block name="content">
+	{:W('PageHeader/simple',array('name'=>'修改材料','search'=>'N'))}
+	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal">
+		<input type="hidden" id="ajax" name="ajax" value="0">
+		<input type="hidden" id="opmode" name="opmode" value="add">
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>序号</th>
+						<th>原材料名称</th>
+						<th>批号</th>
+						<th>单位</th>
+						<th>数量</th>
+						<th>单价</th>
+						<th>供应商</th>
+						<th>操作<i class="fa fa-plus" title="新增" onclick="add()"></i></th>
+					</tr>
+					</thead>
+					<tbody id="tbody">
+					<foreach name="list" item="vo" key="key" >
+						<tr id="{$key+1}">
+							<input type="hidden" id="id" name="id" value="{$vo.id}"/>
+							<td id="num">{$key+1}</td>
+							<td><input id="name" name="name" value="{$vo.name}"/></td>
+							<td><input id="model" name="model"  value="{$vo.model}"/></td>
+							<td><input id="unit" name="unit"  value="{$vo.unit}"/></td>
+							<td><input id="amount" name="amount"  value="{$vo.amount}"/></td>
+							<td><input id="unit_price" name="unit_price"  value="{$vo.unit_price}"/></td>
+							<td>
+								<div class="input-group ">
+									<input class="form-control" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly" value="{$vo.supplier_id|get_supplier_name}"/>
+									<input name="supplier_id" id="supplier_id" type="hidden" msg="请选择供应商" check="require"  value="{$vo.supplier_id}"/>
+									<div class="input-group-btn">
+										<a class="btn btn-sm btn-primary" onclick="select_supplier($(this));" > <i class="fa fa-search" ></i> </a>
+									</div>
+								</div>
+							</td>
+							<td><i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+						</tr>
+					</foreach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!--<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">附件：</label>
+			<div class="col-sm-10">
+				{:W('FileUpload/add')}
+			</div>
+		</div>-->
+		<div class="form-group">
+			<div class="action col-sm-8 col-sm-offset-2">
+				<input class="btn btn-sm btn-primary" type="button" value="保存" onclick="save();">
+				<input class="btn btn-sm btn-default" type="button" value="取消" onclick="go_return_url();">
+			</div>
+		</div>
+		<div id="demo" style="display: none;">
+			<table>
+				<tbody>
+					<tr id="1">
+						<input type="hidden" id="id" name="id" />
+						<td id="num">1</td>
+						<td><input id="name" name="name" /></td>
+						<td><input id="model" name="model"  /></td>
+						<td><input id="unit" name="unit"  /></td>
+						<td><input id="amount" name="amount"  /></td>
+						<td><input id="unit_price" name="unit_price"  /></td>
+						<td>
+							<div class="input-group ">
+								<input class="form-control" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly"/>
+								<input name="supplier_id" id="supplier_id" type="hidden" msg="请选择供应商" check="require"  />
+								<div class="input-group-btn">
+									<a class="btn btn-sm btn-primary" onclick="select_supplier($(this));" > <i class="fa fa-search" ></i> </a>
+								</div>
+							</div>
+						</td>
+						<td><i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+</block>
+<block name="js">
+	<script>
+		function save_material(obj) {
+		    var stock_in_id = "{$id}";
+            var id = obj.parent().parent().find("#id").val();
+            var name = obj.parent().parent().find("#name").val();
+            var model = obj.parent().parent().find("#model").val();
+            var unit = obj.parent().parent().find("#unit").val();
+            var amount = obj.parent().parent().find("#amount").val();
+            var unit_price = obj.parent().parent().find("#unit_price").val();
+            var supplier_id = obj.parent().parent().find("#supplier_id").val();
+
+            sendAjax("{:U('save_material')}","id="+id+"&stock_in_id="+stock_in_id+"&name="+name+"&model="+model+"&unit="+unit+"&amount="+amount+"&unit_price="+unit_price+"&supplier_id="+supplier_id,function(data){
+                if(data.status == 0){
+                    alert(data.msg);
+				}else if(data.status == 1){
+                    alert('保存成功');
+                    obj.parent().parent().find("#id").val(data.id);
+				}
+			});
+        }
+        function select_supplier(obj) {
+		    var id = obj.parent().parent().parent().parent().attr('id');
+            winopen("{:U('supplier/winpop2')}?id=" + id, 560, 470);
+        }
+		var num = {:count($list)};
+		function add(){
+            num++;
+			var html = $("#demo #1").html();
+			$("#tbody").append("<tr id='"+num+"'>"+html+"</tr>");
+            $("#tbody #"+num+" #num").html(num);
+            $("#tbody #"+num+" #id").val('');
+            $("#tbody #"+num+" #id").removeAttr('value');
+            $("#tbody #"+num+" #name").val('');
+            $("#tbody #"+num+" #name").removeAttr('value');
+            $("#tbody #"+num+" #model").val('');
+            $("#tbody #"+num+" #model").removeAttr('value');
+            $("#tbody #"+num+" #unit").val('');
+            $("#tbody #"+num+" #unit").removeAttr('value');
+            $("#tbody #"+num+" #amount").val('');
+            $("#tbody #"+num+" #amount").removeAttr('value');
+            $("#tbody #"+num+" #unit_price").val('');
+            $("#tbody #"+num+" #unit_price").removeAttr('value');
+            $("#tbody #"+num+" #supplier_id").val('');
+            $("#tbody #"+num+" #supplier_id").removeAttr('value');
+            $("#tbody #"+num+" #supplier_name").val('');
+            $("#tbody #"+num+" #supplier_name").removeAttr('value');
+		}
+
+		function del(obj){
+            var true_id = obj.parent().parent().find("#id").val();
+            sendAjax("{:U('del_material')}","id="+true_id,function(data){
+                if(data.status == 0){
+                    alert(data.msg);
+                }else if(data.status == 1){
+                    var id = obj.parent().parent().attr('id');
+                    obj.parent().parent().remove();
+                    num--;
+                    var temp_id;
+                    $("#tbody tr").each(function(){
+                        if($(this).attr('id')>id){
+                            temp_id = $(this).attr('id');
+                            $(this).attr('id',temp_id-1);
+                            $(this).children("td:first").html(temp_id-1);
+                        }
+                    })
+                }
+            });
+		}
+	</script>
+</block>

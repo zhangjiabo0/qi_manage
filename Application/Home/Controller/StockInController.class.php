@@ -12,7 +12,7 @@
 namespace Home\Controller;
 
 class StockInController extends HomeController {
-	protected $config = array('app_type' => 'common');
+	protected $config = array('app_type' => 'common','write' => 'modify','read'=>'save_material,del_material');
 	//过滤查询字段
 	function _search_filter(&$map) {
 		$map['is_del'] = array('eq', '0');
@@ -65,9 +65,89 @@ class StockInController extends HomeController {
 		$plugin['date'] = true;
 		$plugin['uploader'] = true;
 		$plugin['editor'] = true;
+		$no = date('YmdHis');
+        $this -> assign("no", $no);
 		$this -> assign("plugin", $plugin);
 		$this -> display();
 	}
+
+    public function modify() {
+        $plugin['date'] = true;
+        $plugin['uploader'] = true;
+        $plugin['editor'] = true;
+
+        $model = D("StockInMaterial");
+        $map['stock_in_id'] = I('id');
+        if (!empty($model)) {
+            $this -> _list($model, $map,'id asc');
+        }
+
+        $this -> assign("plugin", $plugin);
+        $this -> assign("id", I('id'));
+        $this -> display();
+    }
+
+    public function save_material(){
+        $stock_in_id = I('stock_in_id');
+        $id = I('id');
+        $name = I('name');
+        $model = I('model');
+        $unit = I('unit');
+        $amount = I('amount');
+        $unit_price = I('unit_price');
+        $supplier_id = I('supplier_id');
+        if(empty($stock_in_id)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'stock_in_id不能为空'));
+        }
+        if(empty($name)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'原材料名称不能为空'));
+        }
+        if(empty($model)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'批号不能为空'));
+        }
+        if(empty($unit)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'单位不能为空'));
+        }
+        if(empty($amount)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'数量不能为空'));
+        }
+        if(empty($unit_price)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'单价不能为空'));
+        }
+        if(empty($supplier_id)){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'供应商不能为空'));
+        }
+        $model = D('StockInMaterial');
+        if (false === $model -> create()) {
+            $this -> ajaxReturn(array('status'=>0,'msg'=>$model -> getError()));
+        }
+        if(empty($id)){
+            /*保存当前数据对象 */
+            $list = $model -> add();
+            if ($list !== false) {//保存成功
+                $this -> ajaxReturn(array('status'=>1,'msg'=>'ok','id'=>$list));
+            } else {
+                $this -> ajaxReturn(array('status'=>0,'msg'=>'新增失败!'));
+            }
+        }else{
+            $list = $model -> save();
+            if ($list !== false) {//保存成功
+                $this -> ajaxReturn(array('status'=>11,'msg'=>'ok'));
+            } else {
+                $this -> ajaxReturn(array('status'=>0,'msg'=>'修改失败!'));
+            }
+        }
+    }
+
+    function del_material(){
+        $id = I('id');
+        $r = M('StockInMaterial')->where(array('id'=>$id))->delete();
+        if($r){
+            $this -> ajaxReturn(array('status'=>1,'msg'=>'ok'));
+        }else{
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'删除失败!'));
+        }
+    }
 	
 	function upload() {
 		$this -> _upload();
@@ -78,7 +158,7 @@ class StockInController extends HomeController {
 	}
 
 	/** 插入新新数据  **/
-	protected function _insert($name="WorkLog") {		
+	protected function _insert($name="StockIn") {
 		$model = D($name);
 		if (false === $model -> create()) {
 			$this -> error($model -> getError());
@@ -89,13 +169,12 @@ class StockInController extends HomeController {
 		if (in_array('user_name', $model -> getDbFields())) {
 			$model -> user_name = get_user_name();
 		};
-		if (in_array('dept_id', $model -> getDbFields())) {
-			$model -> dept_id = get_dept_id();
+		if (in_array('created_time', $model -> getDbFields())) {
+			$model -> created_time = time();
 		};
-		if (in_array('dept_name', $model -> getDbFields())) {
-			$model -> dept_name = get_dept_name();
+		if (in_array('updated_time', $model -> getDbFields())) {
+			$model -> updated_time = time();
 		};
-		$model -> create_time = time();
 		/*保存当前数据对象 */
 		$list = $model -> add();
 		if ($list !== false) {//保存成功

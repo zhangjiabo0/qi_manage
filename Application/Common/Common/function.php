@@ -1806,4 +1806,10 @@ function get_top_menu_id($url, $menu = null) {
 	}
 	return $return;
 }
+function get_supplier_name($id){
+    $supplier = D('Supplier')->where(array('id'=>$id))->find();
+    if($supplier){
+        return $supplier['name'];
+    }
+}
 ?>

@@ -71,42 +71,32 @@
 				<div class="work_log_box">
 					<div class="work_log_head clearfix">
 						<div class="col-sm-3  col-xs-6">
-							<nobr>
-								姓名：{$vo.user_name}
+							<nobr >
+								入库单编号：{$vo.no}
 							</nobr>
 						</div>
 						<div class="col-sm-3  col-xs-6">
-							<nobr >
-								部门：{$vo.dept_name}
+							<nobr>
+								录入人：{$vo.user_name}
 							</nobr>
 						</div>
-						<div class="col-sm-6 col-xs-12">
+						<div class="col-sm-3  col-xs-6">
 							<nobr>
-								时间：{$vo.start_date} - {$vo.end_date}
+								录入时间：{$vo.created_time|date='Y-m-d H:i:s',###}
+							</nobr>
+						</div>
+						<div class="col-sm-3  col-xs-6">
+							<nobr>
+								更新时间：{$vo.updated_time|date='Y-m-d H:i:s',###}
 							</nobr>
 							<nobr class="pull-right">
 								<eq name="vo.user_id" value="$user_id">
-									<a href="{:U('edit','id='.$vo['id'])}">修改</a>
+									<a href="{:U('modify','id='.$vo['id'])}">修改材料</a>
 								</eq>
 							</nobr>
 						</div>
 					</div>
-					<div class="content_box col-sm-6 col-xs-12">
-						<div class="title text-center row">
-							工作内容
-						</div>
-						<div class="content">
-							{$vo.content}
-						</div>
-					</div>
-					<div class="plan_box col-sm-6 col-xs-12">
-						<div class="title text-center row">
-							工作计划
-						</div>
-						<div class="content">
-							{$vo.plan}
-						</div>
-					</div>
+
 				</div>
 				{:W('FileUpload/view',array('add_file'=>$vo['add_file']))}
 				<div class="space-12"></div>
@@ -123,10 +113,8 @@
 			window.open("{:U('add')}", "_self");
 		}
 
-
 		$(document).ready(function() {
 			set_return_url();
 		});
-
 	</script>
 </block>

@@ -23,10 +23,11 @@ CREATE TABLE `xiaowei_stock_in` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `no` varchar(255) NOT NULL,
+  `created_time` int(11) NOT NULL,
+  `updated_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qi_stock_in
