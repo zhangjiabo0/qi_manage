@@ -952,6 +952,78 @@ function popup_tree_menu2($tree, $level = 0) {
 	return $html;
 }
 
+function popup_tree_menu_material($tree, $level = 0) {
+    $level++;
+    $html = "";
+    if (is_array($tree)) {
+        $html = "<ul class=\"tree_menu\">\r\n";
+        foreach ($tree as $val) {
+            if (isset($val["name"])) {
+                $name = $val["name"];
+                $id = $val["id"];
+                if (empty($val["id"])) {
+                    $id = $val["name"];
+                }
+                if (!empty($val["is_del"])) {
+                    $del_class = "is_del";
+                } else {
+                    $del_class = "";
+                }
+                $unit = $val["unit"];
+                $model = $val["model"];
+                $unit_price = $val["unit_price"];
+                $remain_amount = $val["remain_amount"];
+                $title = $name.' ('.'型号：'.$model.' 单价：'.$unit_price.' 剩余数量：'.$remain_amount.')';
+                if (isset($val['_child'])) {
+                    $html = $html . "<li>\r\n<a class=\"$del_class\" node=\"$id\" name=\"$name\" unit=\"$unit\" model=\"$model\" unit_price=\"$unit_price\" remain_amount=\"$remain_amount\" ><i class=\"fa fa-angle-right level$level\"></i><span>$title</span></a>\r\n";
+                    $html = $html . popup_tree_menu_material($val['_child'], $level);
+                    $html = $html . "</li>\r\n";
+                } else {
+                    $html = $html . "<li>\r\n<a class=\"$del_class\" node=\"$id\" name=\"$name\" unit=\"$unit\" model=\"$model\" unit_price=\"$unit_price\" remain_amount=\"$remain_amount\" ><i class=\"fa fa-angle-right level$level\"></i><span>$title</span></a>\r\n</li>\r\n";
+                }
+            }
+        }
+        $html = $html . "</ul>\r\n";
+    }
+    return $html;
+}
+
+function popup_tree_menu_product($tree, $level = 0) {
+    $level++;
+    $html = "";
+    if (is_array($tree)) {
+        $html = "<ul class=\"tree_menu\">\r\n";
+        foreach ($tree as $val) {
+            if (isset($val["name"])) {
+                $name = $val["name"];
+                $id = $val["id"];
+                if (empty($val["id"])) {
+                    $id = $val["name"];
+                }
+                if (!empty($val["is_del"])) {
+                    $del_class = "is_del";
+                } else {
+                    $del_class = "";
+                }
+                $unit = $val["unit"];
+                $model = $val["model"];
+                $production_date = $val["production_date"];
+                $remain_amount = $val["remain_amount"];
+                $title = $name.' ('.'型号：'.$model.' 生产日期：'.$production_date.' 剩余数量：'.$remain_amount.')';
+                if (isset($val['_child'])) {
+                    $html = $html . "<li>\r\n<a class=\"$del_class\" node=\"$id\" name=\"$name\" unit=\"$unit\" model=\"$model\" production_date=\"$production_date\" remain_amount=\"$remain_amount\" ><i class=\"fa fa-angle-right level$level\"></i><span>$title</span></a>\r\n";
+                    $html = $html . popup_tree_menu_material($val['_child'], $level);
+                    $html = $html . "</li>\r\n";
+                } else {
+                    $html = $html . "<li>\r\n<a class=\"$del_class\" node=\"$id\" name=\"$name\" unit=\"$unit\" model=\"$model\" production_date=\"$production_date\" remain_amount=\"$remain_amount\" ><i class=\"fa fa-angle-right level$level\"></i><span>$title</span></a>\r\n</li>\r\n";
+                }
+            }
+        }
+        $html = $html . "</ul>\r\n";
+    }
+    return $html;
+}
+
 function get_emp_list($dept_id) {
 	$where['is_del'] = array('eq', 0);
 	$where['dept_id'] = array('eq', $dept_id);
@@ -1810,6 +1882,20 @@ function get_supplier_name($id){
     $supplier = D('Supplier')->where(array('id'=>$id))->find();
     if($supplier){
         return $supplier['name'];
+    }
+}
+
+function get_material_name($id){
+    $material = D('StockInMaterial')->where(array('id'=>$id))->find();
+    if($material){
+        return $material['name'];
+    }
+}
+
+function get_product_name($id){
+    $product = D('Product')->where(array('id'=>$id))->find();
+    if($product){
+        return $product['name'];
     }
 }
 ?>

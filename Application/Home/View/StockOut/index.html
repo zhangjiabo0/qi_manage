@@ -1,6 +1,6 @@
 <extend name="Layout/ins_page" />
 <block name="content">
-	{:W('PageHeader/adv_search',array('name'=>'原材料入库单查询','search'=>'M'))}
+	{:W('PageHeader/adv_search',array('name'=>'产品出库单查询','search'=>'M'))}
 	<form method="post" name="form_adv_search" id="form_adv_search">
 		<div class="adv_search panel panel-default  hidden"  id="adv_search">
 			<div class="panel-heading">
@@ -63,7 +63,7 @@
 		<ul>
 			<li class="thead">
 				<div class="pull-left">
-					<span class="col-16 ">入库单编号</span>
+					<span class="col-16 ">出库单编号</span>
 					<span class="col-8 ">录入人</span>
 				</div>
 				<div class="pull-right">
@@ -91,12 +91,12 @@
 							<span class="col-16 text-center">
 								<nobr class="pull-right">
 								<eq name="vo.user_id" value="$user_id">
-									<a href="{:U('modify','id='.$vo['id'])}">修改材料</a>
+									<a href="{:U('modify','id='.$vo['id'])}">修改出库产品</a>
 								</eq>
 								</nobr>
 								<nobr class="pull-left">
 								<eq name="vo.user_id" value="$user_id">
-									<a href="{:U('edit','id='.$vo['id'])}">修改入库单</a>
+									<a href="{:U('edit','id='.$vo['id'])}">修改出库单</a>
 								</eq>
 								</nobr>
 							</span>

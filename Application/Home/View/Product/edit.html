@@ -1,0 +1,82 @@
+<extend name="Layout/ins_page" />
+<block name="content">
+	{:W('PageHeader/simple',array('name'=>'编辑产品入库','search'=>'N'))}
+	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal">
+		<input type="hidden" id="id" name="id" value="{$vo.id}">
+		<input type="hidden" id="ajax" name="ajax" value="0">		
+		<input type="hidden" id="opmode" name="opmode" value="edit">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">产品名称：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input id="" type="text" class="form-control text-center" name="name" value="{$vo.name}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="unit">单位：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input id="" type="text" class="form-control text-center" name="unit" value="{$vo.unit}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="model">型号：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input id="" type="text" class="form-control text-center" name="model" value="{$vo.model}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="amount">数量：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input id="" type="text" class="form-control text-center" name="amount" value="{$vo.amount}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="production_date">生产日期：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input class="form-control input-date-time" type="text" id="production_date" name="production_date" value="{$vo.production_date}" readonly="readonly">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="remark">备注：</label>
+			<div class="col-sm-10">
+				<div class="input-group" >
+					<input id="" type="text" class="form-control text-center" name="remark" value="{$vo.remark}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">附件：</label>
+			<div class="col-sm-10">
+				{:W('FileUpload/edit',array('add_file'=>$vo['add_file']))}
+			</div>
+		</div>
+
+		<div class="action">
+			<input class="btn btn-sm btn-primary" type="button" value="保存" onclick="save();">
+			<input class="btn btn-sm btn-default" type="button" value="取消" onclick="go_return_url();">
+		</div>
+	</form>
+</block>
+<block name="js">
+	<script>
+		function save() {
+			sendForm("form_data", "{:U('save')}");
+		}
+	</script>
+
+</block>

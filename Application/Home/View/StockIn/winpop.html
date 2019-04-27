@@ -1,0 +1,62 @@
+<extend name="Layout/ins_popup" />
+<block name="content">
+	<input type="hidden" name="val" id="val">
+	<input type="hidden" name="name" id="name">
+	<input type="hidden" name="unit" id="unit">
+	<input type="hidden" name="model" id="model">
+	<input type="hidden" name="unit_price" id="unit_price">
+	<input type="hidden" name="remain_amount" id="remain_amount">
+	<div class="popup-header clearfix">
+		<div class="pull-left">
+			<h1>选择原材料</h1>
+		</div>
+		<div class="pull-right">
+			<input id="id" type="hidden" value="{$id}"/>
+			<a onclick="save();" class="btn btn-sm btn-primary">确定</a>
+			<a onclick="myclose();" class="btn btn-sm btn-default">关闭</a>
+		</div>
+	</div>
+	<div class="popup-body" style="height: 420px;overflow-y: auto;">
+		<div class="popup_tree_menu">
+			<ul class="tree_menu">
+				<li>
+					{$menu}
+				</li>
+			</ul>
+		</div>
+	</div>
+</block>
+<block name="js">
+	<script type="text/javascript">
+		function save() {
+		    var id = $("#id").val();
+			if ($("#name").val().length > 0) {
+				$("#"+id+" #material_name", parent.document).val($("#name").val());
+				$("#"+id+" #material_id", parent.document).val($("#val").val());
+                $("#"+id+" #unit", parent.document).val($("#unit").val());
+                $("#"+id+" #model", parent.document).val($("#model").val());
+                $("#"+id+" #unit_price", parent.document).val($("#unit_price").val());
+                $("#"+id+" #remain_amount", parent.document).val($("#remain_amount").val());
+			} else {
+				ui_error("请选择供应商");
+				return false;
+			}
+			myclose();
+		}
+
+
+		$(document).ready(function() {
+			$(".popup_tree_menu a").click(function() {
+				$("#val").val($(this).attr("node"));
+				// $("#name").val($(this).children("span").text());
+                $("#name").val($(this).attr("name"));
+                $("#unit").val($(this).attr("unit"));
+                $("#model").val($(this).attr("model"));
+                $("#unit_price").val($(this).attr("unit_price"));
+                $("#remain_amount").val($(this).attr("remain_amount"));
+				$(".popup_tree_menu .tree_menu  a.active").removeClass("active");
+				$(this).addClass("active");
+			});
+		});
+	</script>
+</block>

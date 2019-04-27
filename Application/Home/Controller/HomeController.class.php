@@ -231,7 +231,10 @@ class HomeController extends Controller {
 		if (false === $model -> create()) {
 			$this -> error($model -> getError());
 		}
-		
+
+        if (in_array('updated_time', $model -> getDbFields())) {
+            $model -> updated_time = time();
+        };
 		$list = $model -> save();
 		if (false !== $list) {
 			$this -> assign('jumpUrl', get_return_url());

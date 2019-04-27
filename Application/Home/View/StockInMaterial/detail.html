@@ -1,6 +1,6 @@
 <extend name="Layout/ins_page" />
 <block name="content">
-	{:W('PageHeader/adv_search',array('name'=>'原材料入库单查询','search'=>'M'))}
+	{:W('PageHeader/adv_search',array('name'=>'查看消耗','search'=>'M'))}
 	<form method="post" name="form_adv_search" id="form_adv_search">
 		<div class="adv_search panel panel-default  hidden"  id="adv_search">
 			<div class="panel-heading">
@@ -52,24 +52,18 @@
 			</div>
 		</div>
 	</form>
-	<div class="operate panel panel-default">
-		<div class="panel-body">
-			<div class="pull-right">
-				<a class="btn btn-sm btn-primary" onclick="add()">新建</a>
-			</div>
-		</div>
-	</div>
 	<div class="ul_table ul_table_responsive">
 		<ul>
 			<li class="thead">
 				<div class="pull-left">
-					<span class="col-16 ">入库单编号</span>
-					<span class="col-8 ">录入人</span>
+					<span class="col-12 ">产品名称</span>
+					<span class="col-8 ">产品单位</span>
 				</div>
 				<div class="pull-right">
-					<span class="col-16 ">录入时间</span>
-					<span class="col-16 ">更新时间</span>
-					<span class="col-16 text-center">操作</span>
+					<span class="col-12 ">产品型号</span>
+					<span class="col-10 ">产品数量</span>
+					<span class="col-16 ">生产时间</span>
+					<span class="col-12 ">消耗数量</span>
 				</div>
 			</li>
 			<empty name="list">
@@ -80,26 +74,16 @@
 				<foreach name="list" item="vo">
 					<li class="tbody">
 						<div class="pull-left">
-							<span class="col-16 ">{$vo.no}</span>
-							<span class="col-8 ">{$vo.user_name}</span>
+							<span class="col-12 ">{$vo.product_name}</span>
+							<span class="col-8 ">{$vo.product_unit}</span>
 
 						</div>
 						<div class="pull-right">
-							<span class="col-16 ">&nbsp;{$vo.created_time|date='Y-m-d H:i:s',###}</span>
-							<span class="col-16 ">&nbsp;{$vo.updated_time|date='Y-m-d H:i:s',###}</span>
+							<span class="col-12 ">&nbsp;{$vo.product_model}</span>
+							<span class="col-10 ">&nbsp;{$vo.product_amount}</span>
+							<span class="col-16 ">&nbsp;{$vo.production_date}</span>
+							<span class="col-12 ">{$vo.cost_amount}</span>
 
-							<span class="col-16 text-center">
-								<nobr class="pull-right">
-								<eq name="vo.user_id" value="$user_id">
-									<a href="{:U('modify','id='.$vo['id'])}">修改材料</a>
-								</eq>
-								</nobr>
-								<nobr class="pull-left">
-								<eq name="vo.user_id" value="$user_id">
-									<a href="{:U('edit','id='.$vo['id'])}">修改入库单</a>
-								</eq>
-								</nobr>
-							</span>
 						</div>
 					</li>
 				</foreach>

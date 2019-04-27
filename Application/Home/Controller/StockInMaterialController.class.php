@@ -11,11 +11,10 @@
 
 namespace Home\Controller;
 
-class StockInController extends HomeController {
-	protected $config = array('app_type' => 'common','write' => 'modify','read'=>'save_material,del_material,winpop');
+class StockInMaterialController extends HomeController {
+	protected $config = array('app_type' => 'common','write' => 'modify','read' =>'detail');
 	//过滤查询字段
 	function _search_filter(&$map) {
-		$map['is_del'] = array('eq', '0');
 		if (!empty($_POST['keyword'])) {
 			$where['content'] = array('like', '%' . $_POST['keyword'] . '%');
 			$where['plan'] = array('like', '%' . $_POST['keyword'] . '%');
@@ -34,7 +33,7 @@ class StockInController extends HomeController {
 		$auth = $this -> config['auth'];
 		$this -> assign('auth', $auth);
 
-		$model = D("StockIn");
+		$model = D("StockInMaterialView");
 		$map = $this -> _search($model);
 		if ($auth['admin']) {
 
@@ -45,12 +44,39 @@ class StockInController extends HomeController {
 		if (method_exists($this, '_search_filter')) {
 			$this -> _search_filter($map);
 		}
-
 		if (!empty($model)) {
 			$this -> _list($model, $map);
 		}
 		$this -> display();
 	}
+
+    public function detail($id) {
+        $plugin['date'] = true;
+        $plugin['uploader'] = true;
+        $plugin['editor'] = true;
+        $this -> assign("plugin", $plugin);
+        $this -> assign('user_id', get_user_id());
+
+        $auth = $this -> config['auth'];
+        $this -> assign('auth', $auth);
+
+        $model = D("ProductCostMaterialView");
+        $map = $this -> _search($model);
+        if ($auth['admin']) {
+
+        } else {
+//			$map['user_id'] = get_user_id();
+        }
+
+        if (method_exists($this, '_search_filter')) {
+            $this -> _search_filter($map);
+        }
+        $map['material_id'] = $id;
+        if (!empty($model)) {
+            $this -> _list($model, $map);
+        }
+        $this -> display();
+    }
 
 	function edit($id) {
 		$plugin['date'] = true;
