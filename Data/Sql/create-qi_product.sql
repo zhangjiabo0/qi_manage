@@ -10,26 +10,31 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-04-27 16:23:08
+Date: 2019-04-28 21:05:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `xiaowei_stock_out`
+-- Table structure for `xiaowei_product`
 -- ----------------------------
-DROP TABLE IF EXISTS `qi_stock_out`;
-CREATE TABLE `qi_stock_out` (
+DROP TABLE IF EXISTS `qi_product`;
+CREATE TABLE `qi_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `no` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `unit` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `model` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `amount` double NOT NULL,
+  `remain_amount` double NOT NULL,
+  `production_date` datetime DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `created_time` int(11) NOT NULL,
   `updated_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of xiaowei_stock_out
+-- Records of xiaowei_product
 -- ----------------------------

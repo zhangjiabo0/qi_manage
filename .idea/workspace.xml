@@ -19,14 +19,16 @@
     <session id="1161348963">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.34" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -64,7 +66,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockInController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
+            <state relative-caret-position="5400">
               <caret line="208" column="50" selection-start-line="208" selection-start-column="50" selection-end-line="208" selection-end-column="50" />
             </state>
           </provider>
@@ -73,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockOutController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
+            <state relative-caret-position="1890">
               <caret line="78" column="42" selection-start-line="78" selection-start-column="42" selection-end-line="78" selection-end-column="42" />
             </state>
           </provider>
@@ -91,7 +93,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/HomeController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
+            <state relative-caret-position="5940">
               <caret line="228" column="4" selection-start-line="228" selection-start-column="4" selection-end-line="246" selection-end-column="5" />
             </state>
           </provider>
@@ -100,7 +102,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/StockOut/modify.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2116">
+            <state relative-caret-position="2592">
               <caret line="96" column="67" selection-start-line="96" selection-start-column="67" selection-end-line="96" selection-end-column="67" />
             </state>
           </provider>
@@ -109,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockInMaterialController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2595">
+            <state relative-caret-position="1809">
               <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
             </state>
           </provider>
@@ -118,7 +120,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/ProductController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
+            <state relative-caret-position="5103">
               <caret line="197" column="26" selection-start-line="197" selection-start-column="26" selection-end-line="197" selection-end-column="26" />
             </state>
           </provider>
@@ -127,7 +129,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/Product/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="2511">
               <caret line="93" column="61" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
             </state>
           </provider>
@@ -136,7 +138,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/User/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
+            <state relative-caret-position="2862">
               <caret line="106" column="34" selection-start-line="106" selection-start-column="28" selection-end-line="106" selection-end-column="34" />
             </state>
           </provider>
@@ -146,7 +148,7 @@
         <entry file="file://$PROJECT_DIR$/Application/Home/View/User/add.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+              <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -222,7 +224,7 @@
       <path value="$PROJECT_DIR$/phpsocket/vendor/workerman/workerman" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="46" />
     <option name="y" value="28" />
     <option name="width" value="1785" />
@@ -379,17 +381,19 @@
       <workItem from="1555936170996" duration="5563000" />
       <workItem from="1556274337920" duration="599000" />
       <workItem from="1556336718127" duration="7821000" />
+      <workItem from="1556353353458" duration="243000" />
+      <workItem from="1556456446897" duration="592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42358000" />
+    <option name="totallyTimeSpent" value="43193000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="46" y="28" width="1785" height="991" extended-state="0" />
+    <frame x="46" y="28" width="1785" height="991" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2910145" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.297971" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -582,20 +586,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/StockOut/winpop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Product/winpop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="48" column="54" lean-forward="true" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/StockOut/winpop.html" />
     <entry file="file://$PROJECT_DIR$/Application/Home/View/StockIn/winpop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -614,31 +605,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="699">
           <caret line="1897" column="32" selection-start-line="1897" selection-start-column="32" selection-end-line="1897" selection-end-column="32" />
-          <folding>
-            <element signature="e#72#78#1" expanded="true" />
-            <element signature="e#141#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/StockOut/modify.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2116">
-          <caret line="96" column="67" selection-start-line="96" selection-start-column="67" selection-end-line="96" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockInController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
+        <state relative-caret-position="5400">
           <caret line="208" column="50" selection-start-line="208" selection-start-column="50" selection-end-line="208" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/HomeController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockOutController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="228" column="4" selection-start-line="228" selection-start-column="4" selection-end-line="246" selection-end-column="5" />
+        <state relative-caret-position="1890">
+          <caret line="78" column="42" selection-start-line="78" selection-start-column="42" selection-end-line="78" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -649,37 +629,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockOutController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/HomeController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="78" column="42" selection-start-line="78" selection-start-column="42" selection-end-line="78" selection-end-column="42" />
+        <state relative-caret-position="5940">
+          <caret line="228" column="4" selection-start-line="228" selection-start-column="4" selection-end-line="246" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/StockOut/modify.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2592">
+          <caret line="96" column="67" selection-start-line="96" selection-start-column="67" selection-end-line="96" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/StockInMaterialController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2595">
+        <state relative-caret-position="1809">
           <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/ProductController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
+        <state relative-caret-position="5103">
           <caret line="197" column="26" selection-start-line="197" selection-start-column="26" selection-end-line="197" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/Product/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
+        <state relative-caret-position="2511">
           <caret line="93" column="61" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/User/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
+        <state relative-caret-position="2862">
           <caret line="106" column="34" selection-start-line="106" selection-start-column="28" selection-end-line="106" selection-end-column="34" />
         </state>
       </provider>
@@ -687,7 +674,7 @@
     <entry file="file://$PROJECT_DIR$/Application/Home/View/User/add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
         </state>
       </provider>
     </entry>

@@ -10,23 +10,23 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-04-27 16:24:32
+Date: 2019-04-28 21:06:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `xiaowei_stock_out_product`
+-- Table structure for `xiaowei_product_cost_material`
 -- ----------------------------
-DROP TABLE IF EXISTS `qi_stock_out_product`;
-CREATE TABLE `qi_stock_out_product` (
+DROP TABLE IF EXISTS `qi_product_cost_material`;
+CREATE TABLE `qi_product_cost_material` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `stock_out_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `amount` double NOT NULL,
+  `material_id` int(11) NOT NULL,
+  `cost_amount` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of xiaowei_stock_out_product
+-- Records of xiaowei_product_cost_material
 -- ----------------------------
