@@ -104,17 +104,17 @@
 	float:right;
 }
 .popup-container .popup_tree_menu li a {
-	height: 28px;
-	line-height: 28px;
+	height: auto;
+	/*line-height: 28px;*/
 }
 
 .popup-container .popup_tree_menu li a.active {
-	height: 28px;
-	line-height: 28px;
+	height: auto;
+	/*line-height: 28px;*/
 }
 .popup-container .popup_tree_menu li a:hover {
-	height: 28px;
-	line-height: 28px;
+	height: auto;
+	/*line-height: 28px;*/
 }
 .popup-header {
 	background:#fff;

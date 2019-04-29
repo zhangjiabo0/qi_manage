@@ -12,7 +12,7 @@
 namespace Home\Controller;
 
 class ProductController extends HomeController {
-	protected $config = array('app_type' => 'common','write' => 'modify','read'=>'save_material,del_material,winpop');
+	protected $config = array('app_type' => 'common','write' => 'modify,save_material,del_material','read'=>'winpop,stock_out');
 	//过滤查询字段
 	function _search_filter(&$map) {
 		$map['is_del'] = array('eq', '0');
@@ -266,6 +266,16 @@ class ProductController extends HomeController {
         //dump($node);
         $this -> assign('menu', popup_tree_menu_product($tree));
         $this -> assign('id', $id);
+        $this -> display();
+    }
+
+    public function stock_out(){
+	    $model = D('StockOutProductView');
+        $map = $this -> _search($model);
+        $map['product_id'] = I('id');
+        if (!empty($model)) {
+            $this -> _list($model, $map);
+        }
         $this -> display();
     }
 

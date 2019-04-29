@@ -63,7 +63,7 @@
 		<ul>
 			<li class="thead">
 				<div class="pull-left">
-					<!--<span class="col-8 ">名称</span>-->
+					<span class="col-8 ">名称</span>
 					<span class="col-8 ">型号</span>
 				</div>
 				<div class="pull-right">
@@ -71,11 +71,11 @@
 					<span class="col-12">数量</span>
 					<span class="col-12">剩余数量</span>
 					<span class="col-20">生产时间</span>
-					<span class="col-8 text-center">操作</span>
+					<span class="col-16 text-center">操作</span>
 				</div>
-				<div class="auto autocut">
+				<!--<div class="auto autocut">
 					名称
-				</div>
+				</div>-->
 			</li>
 			<empty name="list">
 				<li class="no-data">
@@ -85,7 +85,9 @@
 				<foreach name="list" item="vo">
 					<li class="tbody">
 						<div class="pull-left">
-							<!--<span class="col-8 ">{$vo.task_no}</span>-->
+							<span class="col-8 ">
+								<a href="{:U('edit','id='.$vo['id'])}">{$vo.name}</a>
+							</span>
 							<span class="col-8 ">{$vo.model}</span>
 						</div>
 						<div class="pull-right">
@@ -94,14 +96,14 @@
 							<span class="col-12">{$vo.remain_amount}&nbsp;</span>
 							<span class="col-20">{$vo.production_date|substr=0,16}&nbsp;</span>
 
-							<span class="col-8 text-center">
-								<if condition="($vo.user_id eq $user_id)">
-									<a href="{:U('modify','id='.$vo['id'])}">消耗原材料</a>
-								</if></span>
+							<span class="col-16 text-center">
+								<a href="{:U('modify','id='.$vo['id'])}">消耗原材料</a>&nbsp;
+								<a href="{:U('stock_out','id='.$vo['id'])}">查看销售单</a>
+							</span>
 						</div>
-						<div class="auto autocut">
+						<!--<div class="auto autocut">
 							<a href="{:U('edit','id='.$vo['id'])}">{$vo.name}</a>
-						</div>
+						</div>-->
 					</li>
 				</foreach>
 				<div class="pagination">

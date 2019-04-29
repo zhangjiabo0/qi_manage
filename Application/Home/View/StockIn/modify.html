@@ -1,7 +1,7 @@
 <extend name="Layout/ins_page" />
 <block name="content">
 	{:W('PageHeader/simple',array('name'=>'修改材料','search'=>'N'))}
-	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal">
+	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal" style="overflow: auto;">
 		<input type="hidden" id="ajax" name="ajax" value="0">
 		<input type="hidden" id="opmode" name="opmode" value="add">
 		<div class="row">
@@ -31,14 +31,18 @@
 							<td><input id="unit_price" name="unit_price"  value="{$vo.unit_price}"/></td>
 							<td>
 								<div class="input-group ">
-									<input class="form-control" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly" value="{$vo.supplier_id|get_supplier_name}"/>
+									<input class="form-control" style="width:150px;" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly" value="{$vo.supplier_id|get_supplier_name}"/>
 									<input name="supplier_id" id="supplier_id" type="hidden" msg="请选择供应商" check="require"  value="{$vo.supplier_id}"/>
 									<div class="input-group-btn">
 										<a class="btn btn-sm btn-primary" onclick="select_supplier($(this));" > <i class="fa fa-search" ></i> </a>
 									</div>
 								</div>
 							</td>
-							<td><i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+							<td>
+								<div style="width:60px;">
+									<i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i>
+								</div>
+							</td>
 						</tr>
 					</foreach>
 					</tbody>
@@ -71,14 +75,18 @@
 						<td><input id="unit_price" name="unit_price"  /></td>
 						<td>
 							<div class="input-group ">
-								<input class="form-control" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly"/>
+								<input class="form-control" style="width:150px;" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly"/>
 								<input name="supplier_id" id="supplier_id" type="hidden" msg="请选择供应商" check="require"  />
 								<div class="input-group-btn">
 									<a class="btn btn-sm btn-primary" onclick="select_supplier($(this));" > <i class="fa fa-search" ></i> </a>
 								</div>
 							</div>
 						</td>
-						<td><i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+						<td>
+							<div style="width:60px;">
+								<i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -89,20 +97,20 @@
 	<script>
 		function save_material(obj) {
 		    var stock_in_id = "{$id}";
-            var id = obj.parent().parent().find("#id").val();
-            var name = obj.parent().parent().find("#name").val();
-            var model = obj.parent().parent().find("#model").val();
-            var unit = obj.parent().parent().find("#unit").val();
-            var amount = obj.parent().parent().find("#amount").val();
-            var unit_price = obj.parent().parent().find("#unit_price").val();
-            var supplier_id = obj.parent().parent().find("#supplier_id").val();
+            var id = obj.parent().parent().parent().find("#id").val();
+            var name = obj.parent().parent().parent().find("#name").val();
+            var model = obj.parent().parent().parent().find("#model").val();
+            var unit = obj.parent().parent().parent().find("#unit").val();
+            var amount = obj.parent().parent().parent().find("#amount").val();
+            var unit_price = obj.parent().parent().parent().find("#unit_price").val();
+            var supplier_id = obj.parent().parent().parent().find("#supplier_id").val();
 
             sendAjax("{:U('save_material')}","id="+id+"&stock_in_id="+stock_in_id+"&name="+name+"&model="+model+"&unit="+unit+"&amount="+amount+"&unit_price="+unit_price+"&supplier_id="+supplier_id,function(data){
                 if(data.status == 0){
                     alert(data.msg);
 				}else if(data.status == 1){
                     alert('保存成功');
-                    obj.parent().parent().find("#id").val(data.id);
+                    obj.parent().parent().parent().find("#id").val(data.id);
 				}else if(data.status == 11){
                     alert('保存成功');
 				}
@@ -137,13 +145,13 @@
 		}
 
 		function del(obj){
-            var true_id = obj.parent().parent().find("#id").val();
+            var true_id = obj.parent().parent().parent().find("#id").val();
             sendAjax("{:U('del_material')}","id="+true_id,function(data){
                 if(data.status == 0){
                     alert(data.msg);
                 }else if(data.status == 1){
-                    var id = obj.parent().parent().attr('id');
-                    obj.parent().parent().remove();
+                    var id = obj.parent().parent().parent().attr('id');
+                    obj.parent().parent().parent().remove();
                     num--;
                     var temp_id;
                     $("#tbody tr").each(function(){

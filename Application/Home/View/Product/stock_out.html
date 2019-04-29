@@ -1,6 +1,6 @@
 <extend name="Layout/ins_page" />
 <block name="content">
-	{:W('PageHeader/adv_search',array('name'=>'原材料查询','search'=>'M'))}
+	{:W('PageHeader/adv_search',array('name'=>'销售单查询','search'=>'M'))}
 	<form method="post" name="form_adv_search" id="form_adv_search">
 		<div class="adv_search panel panel-default  hidden"  id="adv_search">
 			<div class="panel-heading">
@@ -56,23 +56,14 @@
 		<ul>
 			<li class="thead">
 				<div class="pull-left">
-					<span class="col-12 ">入库单编号</span>
-					<span class="col-8 ">名称</span>
-					<span class="col-8 ">供应商名称</span>
+					<span class="col-16 ">销售单编号</span>
+					<span class="col-8 ">录入人</span>
 				</div>
 				<div class="pull-right">
-					<!--<span class="col-6 ">创建者</span>-->
-					<span class="col-10 ">入库时间</span>
-					<span class="col-6 ">单位</span>
-					<span class="col-12 ">型号</span>
-					<span class="col-8 ">单价</span>
-					<span class="col-8">入库数量</span>
-					<span class="col-8">剩余数量</span>
-					<span class="col-8 text-center">操作</span>
+					<span class="col-16 ">录入时间</span>
+					<span class="col-16 ">更新时间</span>
+					<span class="col-16 text-center">数量</span>
 				</div>
-				<!--<div class="auto autocut">
-					名称
-				</div>-->
 			</li>
 			<empty name="list">
 				<li class="no-data">
@@ -82,27 +73,18 @@
 				<foreach name="list" item="vo">
 					<li class="tbody">
 						<div class="pull-left">
-							<span class="col-12 ">{$vo.no}</span>
-							<span class="col-8 ">{$vo.name}</span>
-							<span class="col-8 ">{$vo.supplier_id|get_supplier_name}</span>
+							<span class="col-16 ">{$vo.no}</span>
+							<span class="col-8 ">{$vo.user_name}</span>
 
 						</div>
 						<div class="pull-right">
-							<!--<span class="col-6 ">{$vo.user_name}</span>-->
-							<span class="col-10 ">{$vo.created_time|date='Y-m-d',###}</span>
-							<span class="col-6 ">{$vo.unit}</span>
-							<span class="col-12 ">{$vo.model}</span>
-							<span class="col-8 ">{$vo.unit_price}</span>
-							<span class="col-8">{$vo.amount}</span>
-							<span class="col-8">{$vo.remain_amount}</span>
+							<span class="col-16 ">&nbsp;{$vo.created_time|date='Y-m-d H:i:s',###}</span>
+							<span class="col-16 ">&nbsp;{$vo.updated_time|date='Y-m-d H:i:s',###}</span>
 
-							<span class="col-8 text-center">
-									<a href="{:U('detail','id='.$vo['id'])}">查看消耗</a>
+							<span class="col-16 text-center">
+								{$vo.amount}
 							</span>
 						</div>
-						<!--<div class="auto autocut">
-							{$vo.name}
-						</div>-->
 					</li>
 				</foreach>
 				<div class="pagination">
@@ -114,10 +96,6 @@
 </block>
 <block name="js">
 	<script type="text/javascript">
-		function add() {
-			window.open("{:U('add')}", "_self");
-		}
-
 		$(document).ready(function() {
 			set_return_url();
 		});

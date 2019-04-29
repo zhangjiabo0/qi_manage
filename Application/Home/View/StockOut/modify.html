@@ -1,7 +1,7 @@
 <extend name="Layout/ins_page" />
 <block name="content">
-	{:W('PageHeader/simple',array('name'=>'修改出库产品','search'=>'N'))}
-	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal">
+	{:W('PageHeader/simple',array('name'=>'修改销售产品','search'=>'N'))}
+	<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"   class="well form-horizontal" style="overflow: auto;">
 		<input type="hidden" id="ajax" name="ajax" value="0">
 		<input type="hidden" id="opmode" name="opmode" value="add">
 		<div class="row">
@@ -29,14 +29,18 @@
 							<td><input id="production_date" name="production_date"  value="{$vo.production_date}"/></td>
 							<td>
 								<div class="input-group ">
-									<input class="form-control" name="product_name"  id="product_name" type="text" msg="请选择产品" check="require" readonly="readonly" value="{$vo.product_id|get_product_name}"/>
+									<input class="form-control" style="width: 150px;" name="product_name"  id="product_name" type="text" msg="请选择产品" check="require" readonly="readonly" value="{$vo.product_id|get_product_name}"/>
 									<input name="product_id" id="product_id" type="hidden" msg="请选择产品" check="require"  value="{$vo.product_id}"/>
 									<div class="input-group-btn">
 										<a class="btn btn-sm btn-primary" onclick="select_product($(this));" > <i class="fa fa-search" ></i> </a>
 									</div>
 								</div>
 							</td>
-							<td><i class="fa fa-save" title="保存"  onclick="save_stock_out_product($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+							<td>
+								<div style="width: 60px;">
+									<i class="fa fa-save" title="保存"  onclick="save_stock_out_product($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i>
+								</div>
+							</td>
 						</tr>
 					</foreach>
 					</tbody>
@@ -68,14 +72,18 @@
 						<td><input id="production_date" name="production_date"  /></td>
 						<td>
 							<div class="input-group ">
-								<input class="form-control" name="product_name"  id="product_name" type="text" msg="请选择产品" check="require" readonly="readonly"/>
+								<input class="form-control" style="width: 150px;" name="product_name"  id="product_name" type="text" msg="请选择产品" check="require" readonly="readonly"/>
 								<input name="product_id" id="product_id" type="hidden" msg="请选择产品" check="require"  />
 								<div class="input-group-btn">
 									<a class="btn btn-sm btn-primary" onclick="select_product($(this));" > <i class="fa fa-search" ></i> </a>
 								</div>
 							</div>
 						</td>
-						<td><i class="fa fa-save" title="保存"  onclick="save_stock_out_product($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i></td>
+						<td>
+							<div style="width: 60px;">
+								<i class="fa fa-save" title="保存"  onclick="save_stock_out_product($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -86,15 +94,15 @@
 	<script>
 		function save_stock_out_product(obj) {
 		    var stock_out_id = "{$id}";
-            var id = obj.parent().parent().find("#id").val();
-            var amount = obj.parent().parent().find("#amount").val();
-            var product_id = obj.parent().parent().find("#product_id").val();
+            var id = obj.parent().parent().parent().find("#id").val();
+            var amount = obj.parent().parent().parent().find("#amount").val();
+            var product_id = obj.parent().parent().parent().find("#product_id").val();
             sendAjax("{:U('save_product')}","id="+id+"&stock_out_id="+stock_out_id+"&amount="+amount+"&product_id="+product_id,function(data){
                 if(data.status == 0){
                     alert(data.msg);
 				}else if(data.status == 1){
                     alert('保存成功');
-                    obj.parent().parent().find("#id").val(data.id);
+                    obj.parent().parent().parent().find("#id").val(data.id);
 				}else if(data.status == 11){
                     alert('保存成功');
 				}
@@ -127,13 +135,13 @@
 		}
 
 		function del(obj){
-            var true_id = obj.parent().parent().find("#id").val();
+            var true_id = obj.parent().parent().parent().find("#id").val();
             sendAjax("{:U('del_product')}","id="+true_id,function(data){
                 if(data.status == 0){
                     alert(data.msg);
                 }else if(data.status == 1){
-                    var id = obj.parent().parent().attr('id');
-                    obj.parent().parent().remove();
+                    var id = obj.parent().parent().parent().attr('id');
+                    obj.parent().parent().parent().remove();
                     num--;
                     var temp_id;
                     $("#tbody tr").each(function(){

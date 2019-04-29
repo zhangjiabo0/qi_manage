@@ -1003,7 +1003,7 @@ function popup_tree_menu_product($tree, $level = 0) {
                 if (!empty($val["is_del"])) {
                     $del_class = "is_del";
                 } else {
-                    $del_class = "";
+                    $del_class = "winpop-a";
                 }
                 $unit = $val["unit"];
                 $model = $val["model"];

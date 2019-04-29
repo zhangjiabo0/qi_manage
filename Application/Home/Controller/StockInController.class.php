@@ -12,7 +12,7 @@
 namespace Home\Controller;
 
 class StockInController extends HomeController {
-	protected $config = array('app_type' => 'common','write' => 'modify','read'=>'save_material,del_material,winpop');
+	protected $config = array('app_type' => 'common','write' => 'modify,save_material,del_material','read'=>'winpop');
 	//过滤查询字段
 	function _search_filter(&$map) {
 		$map['is_del'] = array('eq', '0');
