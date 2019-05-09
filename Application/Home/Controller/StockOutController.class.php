@@ -95,8 +95,8 @@ class StockOutController extends HomeController {
         if(empty($stock_out_id)){
             $this -> ajaxReturn(array('status'=>0,'msg'=>'stock_out_id不能为空'));
         }
-        if(empty($amount)){
-            $this -> ajaxReturn(array('status'=>0,'msg'=>'数量不能为空'));
+        if(empty($amount) || $amount<=0){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'数量必须大于0'));
         }
         if(empty($product_id)){
             $this -> ajaxReturn(array('status'=>0,'msg'=>'产品不能为空'));

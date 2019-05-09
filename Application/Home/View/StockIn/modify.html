@@ -27,8 +27,8 @@
 							<td><input id="name" name="name" value="{$vo.name}"/></td>
 							<td><input id="model" name="model"  value="{$vo.model}"/></td>
 							<td><input id="unit" name="unit"  value="{$vo.unit}"/></td>
-							<td><input id="amount" name="amount"  value="{$vo.amount}"/></td>
-							<td><input id="unit_price" name="unit_price"  value="{$vo.unit_price}"/></td>
+							<td><input id="amount" name="amount" type="number" min="0" value="{$vo.amount}"/></td>
+							<td><input id="unit_price" name="unit_price" type="number" min="0" value="{$vo.unit_price}"/></td>
 							<td>
 								<div class="input-group ">
 									<input class="form-control" style="width:150px;" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly" value="{$vo.supplier_id|get_supplier_name}"/>
@@ -71,8 +71,8 @@
 						<td><input id="name" name="name" /></td>
 						<td><input id="model" name="model"  /></td>
 						<td><input id="unit" name="unit"  /></td>
-						<td><input id="amount" name="amount"  /></td>
-						<td><input id="unit_price" name="unit_price"  /></td>
+						<td><input id="amount" name="amount"  type="number"  min="0"/></td>
+						<td><input id="unit_price" name="unit_price"  type="number" min="0" /></td>
 						<td>
 							<div class="input-group ">
 								<input class="form-control" style="width:150px;" name="supplier_name"  id="supplier_name" type="text" msg="请选择供应商" check="require" readonly="readonly"/>
@@ -102,7 +102,15 @@
             var model = obj.parent().parent().parent().find("#model").val();
             var unit = obj.parent().parent().parent().find("#unit").val();
             var amount = obj.parent().parent().parent().find("#amount").val();
+            if(amount<=0){
+                alert('请输入大于0的数量');
+                return;
+			}
             var unit_price = obj.parent().parent().parent().find("#unit_price").val();
+            if(unit_price<=0){
+                alert('请输入大于0的单价');
+                return;
+            }
             var supplier_id = obj.parent().parent().parent().find("#supplier_id").val();
 
             sendAjax("{:U('save_material')}","id="+id+"&stock_in_id="+stock_in_id+"&name="+name+"&model="+model+"&unit="+unit+"&amount="+amount+"&unit_price="+unit_price+"&supplier_id="+supplier_id,function(data){

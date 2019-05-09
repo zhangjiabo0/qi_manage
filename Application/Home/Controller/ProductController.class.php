@@ -98,8 +98,8 @@ class ProductController extends HomeController {
         if(empty($material_id)){
             $this -> ajaxReturn(array('status'=>0,'msg'=>'原材料不能为空'));
         }
-        if(empty($cost_amount)){
-            $this -> ajaxReturn(array('status'=>0,'msg'=>'消耗数量不能为空'));
+        if(empty($cost_amount) || $cost_amount<=0){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'消耗数量必须大于0'));
         }
         $find = D('StockInMaterial')->field('remain_amount')->where(array('id'=>$material_id))->find();
 

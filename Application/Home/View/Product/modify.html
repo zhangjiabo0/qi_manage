@@ -33,11 +33,11 @@
 									</div>
 								</div>
 							</td>
-							<td><input id="model" name="model"  value="{$vo.model}"/></td>
-							<td><input id="unit" name="unit"  value="{$vo.unit}"/></td>
-							<td><input id="unit_price" name="unit_price"  value="{$vo.unit_price}"/></td>
-							<td><input id="remain_amount" name="remain_amount"  value="{$vo.remain_amount}"/></td>
-							<td><input id="cost_amount" name="cost_amount" last="{$vo.cost_amount}" value="{$vo.cost_amount}"/></td>
+							<td><input id="model" name="model"  value="{$vo.model}" disabled/></td>
+							<td><input id="unit" name="unit"  value="{$vo.unit}" disabled/></td>
+							<td><input id="unit_price" name="unit_price"  value="{$vo.unit_price}" disabled/></td>
+							<td><input id="remain_amount" name="remain_amount"  value="{$vo.remain_amount}" disabled/></td>
+							<td><input id="cost_amount" name="cost_amount" last="{$vo.cost_amount}" value="{$vo.cost_amount}" type="number" min="0"/></td>
 							<td>
 								<div style="width: 60px;">
 									<i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i>
@@ -77,11 +77,11 @@
 								</div>
 							</div>
 						</td>
-						<td><input id="model" name="model"  /></td>
-						<td><input id="unit" name="unit"  /></td>
-						<td><input id="unit_price" name="unit_price"  /></td>
-						<td><input id="remain_amount" name="remain_amount"  /></td>
-						<td><input id="cost_amount" name="cost_amount" /></td>
+						<td><input id="model" name="model" disabled /></td>
+						<td><input id="unit" name="unit" disabled /></td>
+						<td><input id="unit_price" name="unit_price" disabled /></td>
+						<td><input id="remain_amount" name="remain_amount" disabled /></td>
+						<td><input id="cost_amount" name="cost_amount"  type="number" min="0"/></td>
 						<td>
 							<div style="width: 60px;">
 								<i class="fa fa-save" title="保存"  onclick="save_material($(this))"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-plus" title="新增" onclick="add()"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-minus" title="删除" onclick="del($(this))"></i>
@@ -102,6 +102,10 @@
             var material_id = obj.parent().parent().parent().find("#material_id").val();
 
             var cost_amount = obj.parent().parent().parent().find("#cost_amount").val();
+            if(cost_amount<=0){
+                alert('请输入大于0的消耗数量');
+                return;
+			}
             var last_cost = obj.parent().parent().parent().find("#cost_amount").attr('last');
             var remain_amount = obj.parent().parent().parent().find("#remain_amount").val();
 

@@ -809,4 +809,16 @@ $(document).ready(function() {
 	top_menu = get_cookie("top_menu");
 	$(".navbar-nav a.nav-app[node=" + top_menu + "]").addClass("active");
 
+	/*$("[type='number']").blur(function(){
+		var min = $(this).attr('min');
+        var max = $(this).attr('max');
+        if($(this).val()<min){
+        	console.log('请输入大于'+min+'的数字');
+            $(this).focus();
+		}
+        if($(this).val()>max){
+            console.log('请输入小于'+max+'的数字');
+            $(this).focus();
+        }
+	})*/
 });

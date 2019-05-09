@@ -108,11 +108,11 @@ class StockInController extends HomeController {
         if(empty($unit)){
             $this -> ajaxReturn(array('status'=>0,'msg'=>'单位不能为空'));
         }
-        if(empty($amount)){
-            $this -> ajaxReturn(array('status'=>0,'msg'=>'数量不能为空'));
+        if(empty($amount) || $amount<=0){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'数量必须大于0'));
         }
-        if(empty($unit_price)){
-            $this -> ajaxReturn(array('status'=>0,'msg'=>'单价不能为空'));
+        if(empty($unit_price) || $unit_price<=0){
+            $this -> ajaxReturn(array('status'=>0,'msg'=>'单价必须大于0'));
         }
         if(empty($supplier_id)){
             $this -> ajaxReturn(array('status'=>0,'msg'=>'供应商不能为空'));
