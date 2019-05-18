@@ -23,9 +23,9 @@
 					<div class="col-xs-1">
 						<div class="user">
 							<eq name="vo.sender_id" value="$owner_id">
-								<img class="img-thumbnail" src="__ROOT__/{$vo.receiver_id|get_emp_pic}"  onerror="javascript:this.src='/Uploads/emp_pic/no_avatar.jpg'"/>
+								<img class="img-thumbnail" src="__ROOT__/{$vo.receiver_id|get_emp_pic}"  onerror="javascript:this.src='__ROOT__/Uploads/emp_pic/no_avatar.jpg'"/>
 								<else/>
-								<img class="img-thumbnail" src="__ROOT__/{$vo.sender_id|get_emp_pic}"  onerror="javascript:this.src='/Uploads/emp_pic/no_avatar.jpg'"/>							
+								<img class="img-thumbnail" src="__ROOT__/{$vo.sender_id|get_emp_pic}"  onerror="javascript:this.src='__ROOT__/Uploads/emp_pic/no_avatar.jpg'"/>
 							</eq>
 						</div>
 					</div>

@@ -23,9 +23,9 @@
 						</nobr></th>
 						<td colspan="2" class="col-30">
 						<p class="form-control-static">
-							{$vo.emp_no}
+							{$vo.emp_no} "{__INS__}"
 						</p></td>
-						<td rowspan="3" class="col-20"><img class="img-thumbnail col-12" id="emp_pic" src="__ROOT__/{$vo.id|get_emp_pic}?t={:time()}" onerror="javascript:this.src='/Uploads/emp_pic/no_avatar.jpg'"></td>
+						<td rowspan="3" class="col-20"><img class="img-thumbnail col-12" id="emp_pic" src="__ROOT__/{$vo.id|get_emp_pic}?t={:time()}" onerror="javascript:this.src='__ROOT__/Uploads/emp_pic/no_avatar.jpg'"></td>
 					</tr>
 					<tr>
 						<th>姓名</th>
