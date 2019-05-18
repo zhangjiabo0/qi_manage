@@ -15,6 +15,9 @@ use Think\Model;
 
 class  ProductModel extends CommonModel {
     protected $_validate	=	array(
+        array('name', 'require', '产品名称必填', 1),
+        array('unit', 'require', '单位必填', 1),
+        array('model', 'require', '型号必填', 1),
         array('amount','0','请输入大于0的数量!',1,'>'),
     );
 }

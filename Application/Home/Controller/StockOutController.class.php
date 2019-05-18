@@ -34,6 +34,10 @@ class StockOutController extends HomeController {
 		$auth = $this -> config['auth'];
 		$this -> assign('auth', $auth);
 
+        $where['is_del'] = array('eq', 0);
+        $emp_list = D("User") -> where($where) -> getField('id,name');
+        $this -> assign('emp_list', $emp_list);
+
 		$model = D("StockOut");
 		$map = $this -> _search($model);
 		if ($auth['admin']) {
